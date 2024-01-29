@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Tidy Template</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="body-wrap">
+        <header class="site-header">
+            <!-- ... Header content ... -->
+        </header>
+        <main class="site-content">
+            <section class="signin section">
+                <div class="container-xs">
+                    <div class="signin-inner section-inner">
+                        <div class="section-header center-content">
+                            <h1 class="m-0">Welcome.</h1>
+                        </div>
+                        <div class="tiles-wrap">
+                            <div class="tiles-item">
+                                <div class="tiles-item-inner">
+                                    <form id="signupForm">
+                                        <fieldset>
+                                            <div class="mb-12">
+                                                <label class="form-label screen-reader" for="name">Full name</label>
+                                                <input id="name" class="form-input" type="text" placeholder="Full name" required>
+                                            </div>
+                                            <div class="mb-12">
+                                                <label class="form-label screen-reader" for="email">Email</label> 
+                                                <input id="email" class="form-input" type="email" placeholder="Email" required>
+                                            </div>
+                                            <div class="mb-12">
+                                                <label class="form-label screen-reader" for="password">Password</label> 
+                                                <input type="text" id="password" class="form-input" placeholder="Your Password">
+                                                <button type="button" class="button button-primary button-block" onclick="createPassword()">Generate Password</button>
+                                            </div>
+                                            <div class="mt-24 mb-32">
+                                                <button type="submit" class="button button-primary button-block">Sign up</button>
+                                            </div>
+                                        </fieldset>
+                                    </form>
+                                    <div class="signin-bottom has-top-divider">
+                                        <div class="pt-32 text-xs center-content text-color-low">
+                                            Already have an account? <a class="func-link" href="login.html">Login</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script src="js/main.min.js"></script>
+    <script>
+        function createPassword() {
+            // Define the character sets for different types of characters
+            const numbers = '0123456789';
+            const uppercaseLetters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+            const lowercaseLetters = 'abcdefghijklmnopqrstuvwxyz';
+            const symbols = '!@#$%^&*()_-+=<>?';
+    
+            // Combine all character sets
+            const allCharacters = numbers + uppercaseLetters + lowercaseLetters + symbols;
+    
+            // Function to get a random character from a string
+            const getRandomCharacter = (characters) => characters[Math.floor(Math.random() * characters.length)];
+    
+            // Generate a password with a mix of characters
+            let generatedPassword = '';
+            for (let i = 0; i < 20; i++) {
+                // Choose randomly from numbers, uppercase, lowercase, and symbols
+                const characterSet = i % 4 === 0 ? numbers : (i % 4 === 1 ? uppercaseLetters : (i % 4 === 2 ? lowercaseLetters : symbols));
+                generatedPassword += getRandomCharacter(characterSet);
+            }
+    
+            // Set the generated password to the password input field
+            document.getElementById("password").value = generatedPassword;
+        }
+    
+        // Prevent form submission and keep the form fields populated
+        document.getElementById("signupForm").addEventListener("submit", function (event) {
+            // event.preventDefault();
+            // You can add further processing or submission logic here if needed
+        });
+    </script>
+    
+</body>
+</html>
